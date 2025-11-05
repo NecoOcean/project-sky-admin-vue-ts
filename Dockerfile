@@ -9,7 +9,7 @@ COPY package*.json ./
 
 # 清理 npm 缓存并安装依赖
 RUN npm cache clean --force && \
-    npm install --registry=https://registry.npmmirror.com --no-optional
+    npm install --registry=https://registry.npmmirror.com --legacy-peer-deps --omit=optional
 
 # 复制项目文件
 COPY . .

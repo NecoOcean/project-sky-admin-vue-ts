@@ -1,10 +1,13 @@
 # 第一阶段：构建阶段
 FROM node:16-alpine as build-stage
 
+# 安装构建依赖
+RUN apk add --no-cache python3 make g++
+
 # 设置工作目录
 WORKDIR /app
 
-# 复制 package.json（不复制 package-lock.json）
+# 复制 package.json
 COPY package.json ./
 
 # 配置 npm 并安装依赖

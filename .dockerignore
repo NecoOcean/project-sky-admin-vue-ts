@@ -20,4 +20,4 @@ cypress
 .editorconfig
 report.*.json
 yarn-error.log
-
+package-lock.json

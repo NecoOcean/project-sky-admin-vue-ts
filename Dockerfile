@@ -4,12 +4,13 @@ FROM node:16-alpine as build-stage
 # 设置工作目录
 WORKDIR /app
 
-# 复制package.json和package-lock.json
-COPY package*.json ./
+# 复制 package.json（不复制 package-lock.json）
+COPY package.json ./
 
-# 清理 npm 缓存并安装依赖
-RUN npm cache clean --force && \
-    npm install --registry=https://registry.npmmirror.com --legacy-peer-deps --omit=optional
+# 配置 npm 并安装依赖
+RUN npm config set strict-ssl false && \
+    npm config set registry https://registry.npmmirror.com && \
+    npm install --legacy-peer-deps
 
 # 复制项目文件
 COPY . .

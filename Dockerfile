@@ -7,8 +7,9 @@ WORKDIR /app
 # 复制package.json和package-lock.json
 COPY package*.json ./
 
-# 安装依赖
-RUN npm install --registry=https://registry.npmmirror.com
+# 清理 npm 缓存并安装依赖
+RUN npm cache clean --force && \
+    npm install --registry=https://registry.npmmirror.com --no-optional
 
 # 复制项目文件
 COPY . .
